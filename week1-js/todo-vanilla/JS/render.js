@@ -7,12 +7,36 @@ export function renderTasks() {
 		const li = document.createElement('li')
 		li.className = 'task-element'
 		li.dataset.id = task.id
-		li.textContent = task.title
+		const p = document.createElement('p')
+		p.className = 'text'
+		p.textContent = task.title
 		const button = document.createElement('button')
 		button.className = 'delete-button'
 		button.textContent = 'Удалить'
-		li.append(button)
+		const checkBox = document.createElement('input')
+		checkBox.type = "checkbox"
+		checkBox.name = "isCompleted"
+		checkBox.checked = task.completed
+		li.append(checkBox, p, button)
 		list.append(li)
+
 	})
 	return list
+}
+
+export function renderFooter() {
+	const footer = document.querySelector('footer')
+	footer.innerHTML = ''
+	const activeCount = tasks.filter(t => !t.completed).length
+		const couter = document.createElement('div')
+		couter.className = "footer-content"
+		const p = document.createElement('p')
+		p.textContent = `Осталось выполнить ${activeCount} задач`
+		couter.append(p)
+		const clearCompletedButton = document.createElement('button')
+		clearCompletedButton.className = 'clear-button'
+		clearCompletedButton.textContent = 'Очистить'
+		footer.append(couter, clearCompletedButton)
+
+		return footer
 }

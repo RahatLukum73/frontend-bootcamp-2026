@@ -21,6 +21,18 @@ export function deleteTask(id) {
 	}
 }
 
+export function toggleTask(id) {
+	const task = tasks.find(t => t.id === Number(id));
+	if(task) {
+		return task.completed = !task.completed
+	}
+}
 
+export function clearTasks() {
+	const newTasks = tasks.filter(task => !task.completed)
+	tasks.length = 0
+	tasks.push(...newTasks)
+}
 
-//toggleTask()
+export function saveTasks() {}
+export function loadTasks() {}
