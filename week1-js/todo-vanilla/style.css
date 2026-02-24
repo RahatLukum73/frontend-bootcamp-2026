@@ -1,23 +1,84 @@
-*{padding: 0;margin: 0;border: 0;}
-*,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
-:focus,:active{outline: none;}
-a:focus,a:active{outline: none;}
-nav,footer,header,aside{display: block;}
-html,body{height: 100%;width: 100%;font-size: 100%;line-height: 1;font-size: 14px;-ms-text-size-adjust: 100%;-moz-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;}
-input,button,textarea{font-family:inherit;}
-input::-ms-clear{display: none;}
-button{cursor: pointer;}
-button::-moz-focus-inner {padding:0;border:0;}
-a, a:visited{text-decoration: none;}
-a:hover{text-decoration: none;}
-ul,li{list-style: none;}
-img{vertical-align: top;}
-h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
-
-html, body {
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+*,
+*:before,
+*:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+:focus,
+:active {
+	outline: none;
+}
+a:focus,
+a:active {
+	outline: none;
+}
+nav,
+footer,
+header,
+aside {
+	display: block;
+}
+html,
+body {
 	height: 100%;
+	width: 100%;
+	font-size: 100%;
+	line-height: 1;
+	font-size: 14px;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+input,
+button,
+textarea {
+	font-family: inherit;
+}
+input::-ms-clear {
+	display: none;
+}
+button {
+	cursor: pointer;
+}
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+a,
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+ul,
+li {
+	list-style: none;
+}
+img {
+	vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: inherit;
+	font-weight: 400;
 }
 
+html,
+body {
+	height: 100%;
+	overflow-y: scroll;
+}
 
 .container {
 	display: flex;
@@ -44,34 +105,69 @@ h1 {
 
 .form {
 	padding: 16px;
+	.input {
+		padding: 4px;
+		outline: 1px solid #ddd;
+	}
+	.input:focus {
+		box-shadow: inset 0 0 5px 0px rgba(0, 0, 0, 1);
+		outline: 1px solid #6e6e6e;
+	}
+	.add-task {
+		box-shadow: 0 0 2px 2px #ddd;
+		padding: 4px;
+	}
 }
 
 .main {
-flex: 1;
-padding: 20px;
+	flex: 1;
+	padding: 20px;
 }
 
 .todo-list {
-
 }
 
 .task-element {
 	display: flex;
 	justify-content: space-between;
 	min-width: 400px;
-	border-bottom: 1px solid #333;
+	border-bottom: 1px solid #cccccc;
 	padding: 8px;
+	.block-button {
+		display: flex;
+		gap: 8px;
+		.edit-button {
+			color: rgb(68, 68, 241);
+			padding: 2px;
+			border-radius: 2px;
+			box-shadow: 0 0 2px 2px #ddd;
+		}
+		.delete-button {
+			color: rgb(219, 84, 84);
+			padding: 2px;
+			border-radius: 2px;
+			box-shadow: 0 0 2px 2px #ddd;
+		}
+	}
 }
 
 footer {
 	display: flex;
 	justify-content: space-between;
 	min-width: 100%;
-	padding: 16px 0;
+	padding: 16px;
 	background: #ddd;
 }
 
 .footer-content {
 	align-self: center;
+	p {
+		border-bottom: 1px solid #333;
+	}
+}
 
+.clear-button {
+	padding: 4px;
+	border-radius: 2px;
+	box-shadow: 0 0 2px 2px #d1d1d1;
 }
