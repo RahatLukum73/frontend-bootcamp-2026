@@ -57,3 +57,14 @@ export function saveEditTask(id, value) {
 	}
 	saveTasks(tasks)
 }
+
+export function tasksFilter(tasks, currentFilter) {
+	if (currentFilter === 'all') {
+		return tasks
+	} else if (currentFilter === 'active') {
+		return tasks.filter((task) => !task.completed)
+	} else if (currentFilter === 'completed') {
+		return tasks.filter((task) => task.completed)
+	}
+	saveTasks(tasks)
+}

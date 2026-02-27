@@ -1,14 +1,24 @@
-import { tasks } from './state.js'
-import { clearTasks, createTask, deleteTask, editTask, saveEditTask, toggleTask } from './tasks.js'
-import { renderFooter, renderTasks } from './render.js'
+import { setFilter, tasks } from './state.js'
+import {
+	clearTasks,
+	createTask,
+	deleteTask,
+	editTask,
+	saveEditTask,
+	tasksFilter,
+	toggleTask,
+} from './tasks.js'
+import { renderFilter, renderFooter, renderTasks } from './render.js'
+
+renderTasks()
+renderFilter()
+renderFooter()
 
 const form = document.querySelector('.form')
 const input = document.querySelector('.input')
 const todoList = document.querySelector('.todo-list')
 const footer = document.querySelector('footer')
-
-renderTasks()
-renderFooter()
+const filter = document.querySelector('.filter-block-button')
 
 form.addEventListener('submit', (event) => {
 	event.preventDefault()
@@ -31,16 +41,14 @@ todoList.addEventListener('click', (event) => {
 })
 
 todoList.addEventListener('click', (event) => {
-		if (event.target.classList.contains('edit-button')) {
+	if (event.target.classList.contains('edit-button')) {
 		const li = event.target.closest('.task-element')
 		const id = li.dataset.id
 		editTask(id)
 		renderTasks()
-		//renderFooter()
-		}
+		renderFooter()
+	}
 })
-
-
 
 todoList.addEventListener('keydown', (event) => {
 	if (event.target.name === 'edit' && event.key === 'Enter') {
@@ -79,4 +87,10 @@ footer.addEventListener('click', (event) => {
 	}
 })
 
-
+filter.addEventListener('click', ({ target }) => {
+	if (target.dataset.filter) {
+		const currentFilter = target.dataset.filter
+		tasksFilter(tasks, setFilter(currentFilter))
+		renderTasks()
+	}
+})
