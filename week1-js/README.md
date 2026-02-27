@@ -12,8 +12,6 @@
 
 - Пользователь может очищать список задачь
 
-- Пользователь может искать задачу
-
 - Пользователь может фильтровать задачу
 
 ## 2. Task Data Structure
@@ -23,9 +21,8 @@
 - id
 - title
 - completed
+- editing
 - createdAt
-- completedAt
-- updatedAt
 
 ## 3. Functions List
 
@@ -34,7 +31,6 @@
 - deleteTask()
 - toggleTask()
 - cleanTaskList()
-- searchTask()
 
 ## 4. DOM Elements
 
@@ -46,25 +42,24 @@ Task App
 -- Input (поле ввода задачи)
 -- Add Button (кнопка добавления)
 
--Filters
---All tasks
---Active tasks
---Completed tasks
-
--Search Section
--- Input (поле ввода поиска)
--- Search Button (кнопка искать)
 
 -Task List Container
 --Task Item
 ---Checkbox
 ---Task Text
+---Edit Button
 ---Delete Button
 
 --Task Item
 ---Checkbox
 ---Task Text
+---Edit Button
 ---Delete Button
+
+-Filters
+--All tasks
+--Active tasks
+--Completed tasks
 
 -Footer
 --Tasks counter
