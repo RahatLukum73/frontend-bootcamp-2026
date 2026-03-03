@@ -1,6 +1,12 @@
 import { useState } from 'react'
+import styled from 'styled-components'
 
-export const TodoInput = ({onAdd}: {onAdd: (title: string) => void}) => {
+interface TodoInputProps {
+	className?: string
+	onAdd: (title: string) => void
+}
+
+const TodoInputContainer = ({className, onAdd}: TodoInputProps) => {
 	const [title, setTitle] = useState<string>('')
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -9,7 +15,7 @@ export const TodoInput = ({onAdd}: {onAdd: (title: string) => void}) => {
 		setTitle('')
 	}
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} className={className}>
 			<input
 			type="text"
 			value={title}
@@ -19,3 +25,9 @@ export const TodoInput = ({onAdd}: {onAdd: (title: string) => void}) => {
 		</form>
 	)
 }
+
+export const TodoInput = styled(TodoInputContainer)`
+	display: flex;
+	justify-content: center;
+	padding: 12px;
+`

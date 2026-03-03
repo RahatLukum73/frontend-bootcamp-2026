@@ -12,7 +12,6 @@ export function createTask(title) {
 		editing: false,
 		createdAt: new Date(),
 	}
-	console.log(tasks.unshift(taskItem))
 	tasks.unshift(taskItem)
 	saveTasks(tasks)
 
