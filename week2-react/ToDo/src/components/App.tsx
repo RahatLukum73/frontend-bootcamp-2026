@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import type { Task } from '../types'
+import { useEffect, useState } from 'react'
+import type { Task, Filter } from '../types'
 import { TodoInput } from './TodoInput'
 import { TodoList } from './TodoList'
 import { Footer } from './Footer'
@@ -9,10 +9,15 @@ import { Header } from './Header'
 interface AppContainerProps {
 	className?: string
 }
+
 const AppContainer = ({ className }: AppContainerProps) => {
 
-
-	const [tasks, setTasks] = useState<Task[]>([])
+	const [tasks, setTasks] = useState<Task[]>(() => {
+		const arrTasks = localStorage.getItem('tasks')
+	if(!arrTasks) return []
+		return JSON.parse(arrTasks) as Task[]
+	})
+	const [filter, setFilter] = useState<Filter>('all')
 
 	const addTask = (title: string): void => {
 		if (title.trim() === '') {
@@ -40,12 +45,22 @@ const AppContainer = ({ className }: AppContainerProps) => {
 		)
 	}
 
+	const filteredTasks = tasks.filter((task) => {
+		if(filter === 'all') return task
+		if(filter === 'active') return !task.completed
+		if(filter === 'completed') return task.completed
+	})
+
+	useEffect(() => {
+		localStorage.setItem('tasks', JSON.stringify(tasks))
+	}, [tasks])
+
 	return (
 		<div className={className}>
 			<Header/>
 			<TodoInput onAdd={addTask} />
-			<TodoList tasks={tasks} onDelete={deleteTask} onToggle={toggleTask} />
-			<Footer tasks={tasks} />
+			<TodoList tasks={filteredTasks} onDelete={deleteTask} onToggle={toggleTask} />
+			<Footer tasks={tasks} filter={filter} setFilter={setFilter}/>
 		</div>
 	)
 }

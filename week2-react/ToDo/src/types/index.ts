@@ -5,3 +5,5 @@ export type Task = {
 	editing: boolean
 	createdAt: string
 }
+
+export type Filter = 'all' | 'active' | 'completed'
