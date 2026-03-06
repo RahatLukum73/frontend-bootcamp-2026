@@ -11,10 +11,9 @@ interface AppContainerProps {
 }
 
 const AppContainer = ({ className }: AppContainerProps) => {
-
 	const [tasks, setTasks] = useState<Task[]>(() => {
 		const arrTasks = localStorage.getItem('tasks')
-	if(!arrTasks) return []
+		if (!arrTasks) return []
 		return JSON.parse(arrTasks) as Task[]
 	})
 	const [filter, setFilter] = useState<Filter>('all')
@@ -45,10 +44,26 @@ const AppContainer = ({ className }: AppContainerProps) => {
 		)
 	}
 
+	const toggleEditing = (id: number): void => {
+		setTasks((prev) =>
+			prev.map((task) =>
+				task.id === id ? { ...task, editing: !task.editing } : task
+			)
+		)
+	}
+
+	const editTask = (id: number, newTitle: string): void => {
+		setTasks((prev) =>
+			prev.map((task) =>
+				task.id === id ? { ...task, title: newTitle, editing: false } : task
+			)
+		)
+	}
+
 	const filteredTasks = tasks.filter((task) => {
-		if(filter === 'all') return task
-		if(filter === 'active') return !task.completed
-		if(filter === 'completed') return task.completed
+		if (filter === 'all') return task
+		if (filter === 'active') return !task.completed
+		if (filter === 'completed') return task.completed
 	})
 
 	useEffect(() => {
@@ -57,10 +72,16 @@ const AppContainer = ({ className }: AppContainerProps) => {
 
 	return (
 		<div className={className}>
-			<Header/>
+			<Header />
 			<TodoInput onAdd={addTask} />
-			<TodoList tasks={filteredTasks} onDelete={deleteTask} onToggle={toggleTask} />
-			<Footer tasks={tasks} filter={filter} setFilter={setFilter}/>
+			<TodoList
+				tasks={filteredTasks}
+				onDelete={deleteTask}
+				onToggle={toggleTask}
+				onEditing={toggleEditing}
+				onEdit={editTask}
+			/>
+			<Footer tasks={tasks} filter={filter} setFilter={setFilter} />
 		</div>
 	)
 }

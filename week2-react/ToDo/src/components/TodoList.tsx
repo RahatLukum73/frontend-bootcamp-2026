@@ -7,13 +7,15 @@ interface TodoListProps {
 	tasks: Task[]
 	onDelete: (id: number) => void
 	onToggle: (id: number) => void
+	onEditing: (id: number) => void
+	onEdit: (id: number, newTitle: string) => void
 }
 
-const TodoListContainer = ({ className, tasks, onDelete, onToggle }: TodoListProps) => {
+const TodoListContainer = ({ className, tasks, onDelete, onToggle, onEditing, onEdit }: TodoListProps) => {
 	return (
 			<ul className={className}>
 			{tasks.map((task) => (
-				<TodoItem key={task.id} task={task} onDelete={onDelete} onToggle={onToggle} />
+				<TodoItem key={task.id} task={task} onDelete={onDelete} onToggle={onToggle} onEditing={onEditing} onEdit={onEdit} />
 			))}
 		</ul>
 		
