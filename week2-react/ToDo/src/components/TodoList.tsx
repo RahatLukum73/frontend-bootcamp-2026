@@ -23,6 +23,8 @@ const TodoListContainer = ({ className, tasks, onDelete, onToggle, onEditing, on
 }
 
 export const TodoList = styled(TodoListContainer)`
+	padding: 16px;
+	box-sizing: border-box;
 	flex: 1;
 	align-self: center;
 `

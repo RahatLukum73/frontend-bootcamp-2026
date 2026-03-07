@@ -77,4 +77,5 @@ h6 {
 body {
 	display: flex;
 	justify-content: center;
+	overflow-y: scroll;
 }
