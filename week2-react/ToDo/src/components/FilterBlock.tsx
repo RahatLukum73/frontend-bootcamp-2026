@@ -21,6 +21,7 @@ const FilterBlockContainer = ({ className, setFilter, filter }: FilterBlockProps
 export const FilterBlock = styled(FilterBlockContainer)`
 display: flex;
 gap: 8px;
+border-bottom: 1px solid #333;
 align-items: center;
 font-weight: 600;
 button {
